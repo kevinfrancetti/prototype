@@ -10,4 +10,4 @@ build-debug:
 	gcc -g -o aids-debug main.c
 	
 clean:
-	rm -v aids.exe
+	rm -v aids.exe aids-debug.exe
