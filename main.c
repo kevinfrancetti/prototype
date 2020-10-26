@@ -10,6 +10,7 @@
 int main(){
 	printf("Dio boia");
 	printf("mannaggia");
+	printf("minchisa");
 	int a = 4;
 	int b = 12;
 	return 0;
