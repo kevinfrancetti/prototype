@@ -1,0 +1,13 @@
+prog : main.o
+	$(CC) -o $@ $<
+
+#main.o : main.c
+#	$(CC) -c -o $@ $<
+
+%.o : %.c
+	$(CC) -c -o $@ $<
+	echo ciaone
+
+.PHONY: clean
+clean :
+	$(RM) prog main.o
