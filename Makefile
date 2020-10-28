@@ -1,3 +1,4 @@
+#Disabling implicit rules
 .SUFFIXES:
 
 TARGET := myprog
@@ -13,14 +14,15 @@ all: $(TARGET)
 $(TARGET): $(cobjs)
 	$(CC) -o $@ $^
 
-#%.o : %.c
-#	@echo fuck
+#Make dosent require this command explicitaly, but i disabled the implicit rules.
+%.o : %.c
+	$(CC) -c -o $@ $<
 
 
 
 .PHONY: clean
 clean:
-	$(RM) -v $(TARGET) 
+	$(RM) -v $(TARGET) $(cobjs)
 	
 	
 say_hello:
