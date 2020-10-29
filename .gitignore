@@ -1,5 +1,7 @@
 #build files
 *.exe
+*.o
+*.d
 
 #eclipse project files
 .settings

@@ -3,26 +3,30 @@
 
 TARGET := myprog
 LDFLAGS =
+CFLAGS := -MMD
 
+#why using wildcard function?: wildcard expansion dosen't normaly happen in variable declaration 
 csrc := $(wildcard *.c)
 cobjs := $(csrc:.c=.o)
+cdeps := $(cobjs:.o=.d)
 
 
+.PHONY: all
 all: $(TARGET) 
 	
 
 $(TARGET): $(cobjs)
-	$(CC) -o $@ $^
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 #Make dosent require this command explicitaly, but i disabled the implicit rules.
 %.o : %.c
-	$(CC) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 
 
 .PHONY: clean
 clean:
-	$(RM) -v $(TARGET) $(cobjs)
+	$(RM) -v $(TARGET) $(cobjs) $(cdeps)
 	
 	
 say_hello:
