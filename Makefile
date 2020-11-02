@@ -2,8 +2,8 @@
 .SUFFIXES:
 
 TARGET := myprog
-LDFLAGS =
 CFLAGS := -MMD
+CC := gcc #TODO
 
 #why using wildcard function?: wildcard expansion dosen't normaly happen in variable declaration 
 csrc := $(wildcard *.c)
@@ -34,3 +34,11 @@ say_hello:
 	@echo '$(RM)'
 	@echo '$(CC)'
 	@echo '$(cobjs)'
+	@echo '$(shell uname)'
+	@echo '$(shell which gcc)'
+	echo $(OS)
+	sh --version
+	bash --version
+	which make
+	which gcc
+	which ls
