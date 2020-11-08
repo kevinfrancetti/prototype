@@ -23,22 +23,10 @@ $(TARGET): $(cobjs)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 
-
 .PHONY: clean
 clean:
 	$(RM) -v $(TARGET) $(cobjs) $(cdeps)
-	
-	
+		
 say_hello:
-	@echo "Mucca dio cane"
-	@echo '$(RM)'
-	@echo '$(CC)'
-	@echo '$(cobjs)'
-	@echo '$(shell uname)'
-	@echo '$(shell which gcc)'
-	echo $(OS)
-	sh --version
-	bash --version
-	which make
-	which gcc
-	which ls
+	@echo $(@:llo=E)
+	@echo $(@:E=X)
