@@ -2,7 +2,7 @@
 #define PROG1_H
 
 
-
+void hello();
 
 
 

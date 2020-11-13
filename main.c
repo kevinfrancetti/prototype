@@ -6,8 +6,11 @@
  */
 
 #include <stdio.h>
+#include "prog1.h"
 
 int main(){
+	hello();
+
 	printf("Dio boia");
 	printf("mannaggia");
 	printf("minchisa");

@@ -10,10 +10,17 @@ csrc := $(wildcard *.c)
 cobjs := $(csrc:.c=.o)
 cdeps := $(cobjs:.o=.d)
 
+ciao:
+	echo $(CFLAGS)
+
+	
+-include test.mk
+
 
 .PHONY: all
 all: $(TARGET) 
 	
+-include $(cdeps)
 
 $(TARGET): $(cobjs)
 	$(CC) -o $@ $^ $(LDFLAGS)
