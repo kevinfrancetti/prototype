@@ -1,13 +1,6 @@
-prog : main.o
-	$(CC) -o $@ $<
+VAR1 := var1
 
-#main.o : main.c
-#	$(CC) -c -o $@ $<
-
-%.o : %.c
-	$(CC) -c -o $@ $<
-	echo ciaone
-
-.PHONY: clean
-clean :
-	$(RM) prog main.o
+tst: FORCE
+	echo ciarro
+	
+FORCE:

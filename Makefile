@@ -22,6 +22,7 @@ all: $(TARGET)
 	
 -include $(cdeps)
 
+
 $(TARGET): $(cobjs)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
@@ -37,3 +38,8 @@ clean:
 say_hello:
 	@echo $(@:llo=E)
 	@echo $(@:E=X)
+	
+tst: FORCE
+	echo ciao
+	
+FORCE:

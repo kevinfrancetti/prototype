@@ -1,0 +1,18 @@
+VAR1 := var1
+VAR3 := hhh
+
+-include a1 a2 a3
+
+tst: FORCE
+	echo ciarro
+	
+FORCE:
+
+a1: sbro cul aids male
+	echo creao a1
+	echo ano: > a1
+	
+
+.PHONY: clean
+clean:
+	$(RM) a1 a2 a3 *.log
