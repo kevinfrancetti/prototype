@@ -3,32 +3,27 @@
 
 TARGET := myprog
 CFLAGS := -MMD
-CC := gcc #TODO
+CC := gcc #TODO, on windows dosen't work without this line
 
 #why using wildcard function?: wildcard expansion dosen't normaly happen in variable declaration 
 csrc := $(wildcard *.c)
 cobjs := $(csrc:.c=.o)
 cdeps := $(cobjs:.o=.d)
 
-ciao:
-	echo $(CFLAGS)
-
-	
--include test.mk
-
 
 .PHONY: all
-all: $(TARGET) 
-	
+all: $(TARGET)
+
+
 -include $(cdeps)
 
 
 $(TARGET): $(cobjs)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-#Make dosent require this command explicitaly, but i disabled the implicit rules.
+#Make dosent require this command explicitaly, but I disabled the implicit rules.
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -g -c -o $@ $<
 
 
 .PHONY: clean
@@ -39,7 +34,3 @@ say_hello:
 	@echo $(@:llo=E)
 	@echo $(@:E=X)
 	
-tst: FORCE
-	echo ciao
-	
-FORCE:
