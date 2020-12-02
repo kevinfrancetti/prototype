@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "prog1.h"
+#include "snake.h"
 
 int main(){
 	//hello();
@@ -18,12 +19,12 @@ int main(){
 	int c = &a;
 	void* vpt1 = &a;
 	void* vpt2 = vpt1 + 1;
-
+	 */
 
 	printf("Dio boia");
 	printf("mannaggia");
 	printf("minchisa");
-	*/
+
 
 	return 0;
 }
