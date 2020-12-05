@@ -22,6 +22,7 @@ int main(){
 	 */
 
 	printf("Dio boia");
+	printf("\e[1;1H\e[2J");
 	printf("mannaggia");
 	printf("minchisa");
 
