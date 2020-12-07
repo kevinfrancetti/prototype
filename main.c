@@ -41,7 +41,8 @@ int main(){
 	printf("\033[2J\033[H");
 	printf("mannaggia");
 	printf("minchisa");
-
+	try();
+	printf("\\033[23Ccazzo");
 
 	return 0;
 }
