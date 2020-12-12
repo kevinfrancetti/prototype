@@ -1,17 +1,26 @@
 #Disabling implicit rules
 .SUFFIXES:
 
-TARGET := myprog
+
+
+#Compiler options
 CFLAGS := -MMD
-#LDFLAGS := -L/c/Program\ Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/lib
+
 CC := gcc #TODO, on windows dosen't work without this line
 
-#why using wildcard function?: wildcard expansion dosen't normaly happen in variable declaration 
+#why using wildcard function?: wildcard expansion dosen't normaly happen in variable declaration
+#Files path defintions
+TARGET := myprog
+csrcpath := src
+cdepspath := cdeps
 csrc := $(wildcard *.c)\
-		$(wildcard src/*.c)\
-		$(wildcard src/engine/*c)
+		$(wildcard $(csrcpath)/*.c)\
+		$(wildcard $(csrcpath)/engine/*c)
+		
 cobjs := $(csrc:.c=.o)
 cdeps := $(cobjs:.o=.d)
+
+cdeps := $(patsubst pattern,replacement,$(cobjs))
 
 
 
