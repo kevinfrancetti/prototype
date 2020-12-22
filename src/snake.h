@@ -9,5 +9,6 @@
 #define SNAKE_H_
 
 void run();
+void fun();
 
 #endif /* SNAKE_H_ */

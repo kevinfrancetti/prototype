@@ -8,34 +8,50 @@ CFLAGS := -MMD
 
 CC := gcc #TODO, on windows dosen't work without this line
 
-#why using wildcard function?: wildcard expansion dosen't normaly happen in variable declaration
-#Files path defintions
+#Program name
 TARGET := myprog
 
+#Files paths
 csrcpath := src/
 cdepspath := cdeps/
+
+#why using wildcard function?: wildcard expansion dosen't normaly happen in variable declaration
 csrc := $(wildcard *.c)\
 		$(wildcard $(csrcpath)*.c)\
 		$(wildcard $(csrcpath)engine/*c)
 		
 cobjs := $(csrc:.c=.o)
+
 cdeps := $(cobjs:.o=.d)
 cdeps := $(notdir $(cdeps))
 cdeps := $(addprefix $(cdepspath),$(cdeps))	
 
 #cdeps := $(patsubst pattern,replacement,$(cobjs))
 
+###Util functions###
+fun_dep_path = $(addprefix $(cdepspath),$(notdir $(1:.c=.d)))
 
+#Params:
+#1: new path
+#2: filename
+#3: old extension
+#4: new extension
+##:Usage examble $(call fun_change_path_and_extension,some/cool/place,this/file/here.c,c,d);
+#This function changes the path and the file extension of a given file
+fun_change_path_and_extension = $(addprefix $(1),$(notdir $(2:.$(3)=.$(4))))
+
+####################
 
 .PHONY: all
-all: $(TARGET)
+all: $(TARGET) ketchup
 
 
 -include $(cdeps)
 
 
-$(TARGET): $(cobjs)
+$(TARGET) ketchup: $(cobjs)
 	$(CC) -o $@ $^ $(LDFLAGS)
+	echo $@
 
 #Make dosent require this command explicitaly, but I disabled the implicit rules.
 %.o : %.c $(cdepspath)
@@ -55,17 +71,12 @@ say_hello:
 	@echo $(@:E=X)
 	@echo $(@:llo=E)
 	@echo $(@:E=X)
-	@echo 1 $(notdir $(csrc))
-	@echo 1.5 $(addprefix $(path),$(notdir $(csrc)))
-	@echo 2 $(notdir $(csrc:.c=.o))
 	@echo 3 $(csrc)
-	@echo 4 $(realpath main.c)
-	@echo 5 $(dir $(csrc))
-	@echo 6 $(subst src/,bin/,$(path))
-	@echo 7 $(patsubst src%,bin%,$(path))
 	@echo 8 $(cobjs)
 	@echo 9 $(cdeps)
-	@echo 10 $(addprefix $(cdepspath),$(notdir $(cdeps))) 
-	@echo 11  $(cdeps)	
+	@echo 12 $(cdepspath)
+	@echo 13 $(call fun_dep_path,$(csrc))
+	@echo 14 $(call fun_change_path_and_extension,$(cdepspath),$(csrc),c,d);
+	@echo 15 $(call fun_change_path_and_extension,$(csrcpath),$(cdeps),d,c);
 #@echo 8 $(patsubst src%,bin,$(patsubst $(path))) 
 	
